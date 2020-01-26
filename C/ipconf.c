@@ -31,6 +31,27 @@ int* tobinary(int decimal) {
 }
 
 
+int * bintoip(int binary[]){
+
+	int * bintoip(int binary[]){
+	int *ip = (int*) malloc(4 * sizeof(int));
+	int num = 0, y[] = {128,64,32,16,8,4,2,1}, i, j;
+
+	for(i = 0; i < 4; i++){
+		for(j = 0; j < 8; j++){
+			num = num + y[j] * binary[8*i+j];
+}
+		ip[i] = num;
+		num = 0;
+}
+
+return ip;
+
+	}
+
+
+
+
 int main (int argc, char *argv[]){
 
 	const char* short_options = "h:p:x:c:n:";
@@ -46,7 +67,8 @@ int main (int argc, char *argv[]){
 
 	int rez, x;
     int option_index;
-    int* binary;
+    int* binary;		
+
 	while ((rez=getopt_long(argc, argv, short_options, long_options, &option_index)) != -1){
 		switch(rez){
 			case 'h': {
