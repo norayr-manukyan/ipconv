@@ -4,7 +4,8 @@
 #include <string.h>
 
 int* tobinary(int decimal) {
-	int currbin,binary[32],currbinary[32],currbinlen,i,m, number = 0;
+	int currbin, currbinary[32], currbinlen, i, m, number = 0;
+    int *binary = (int*) malloc(32 * sizeof(int));
 
 	i=0;
 	for(decimal; decimal/2 > 0 ; decimal/=2){
@@ -26,12 +27,6 @@ int* tobinary(int decimal) {
 		}
 		else { binary[i] = currbinary[currbin]; currbin--;}
 	}
-
-	for (int i= 0; i < 32; i ++)
-	{
-		printf("i = %d\n", binary[i]);
-	}
-
 	return  binary;
 }
 
@@ -51,7 +46,7 @@ int main (int argc, char *argv[]){
 
 	int rez, x;
     int option_index;
-
+    int* binary;
 	while ((rez=getopt_long(argc, argv, short_options, long_options, &option_index)) != -1){
 		switch(rez){
 			case 'h': {
@@ -67,7 +62,11 @@ int main (int argc, char *argv[]){
 			case 'p': {
 				if (optarg){
                     x = atoi(optarg);
-					tobinary(x);
+					binary = tobinary(x);
+	                for (int i= 0; i < 32; i ++)
+	                {
+		                printf("i = %d\n", binary[i]);
+	                }
                     printf("%d\n", x);
                 }
                 else
