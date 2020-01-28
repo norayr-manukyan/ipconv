@@ -50,6 +50,42 @@ return ip;
 	}
 
 
+int* decimal_to_bin(int num){
+   int *bin = (int*) malloc(8 * sizeof(int));
+   for (int i=0;i<8;i++){
+        bin[i] = 0;
+   };
+   int bit;
+   for (int i= 0; i <8; i++ ){
+      bit = num >> (8-i-1);
+      if (bit & 1){
+          bin[i] = 1;}
+      else
+      {
+          bin[i] = 0;}
+   }
+   return bin;
+}
+
+
+int* iptobin(char* ips){
+    int* bin_list = (int*) malloc(32 * sizeof(int));
+    int* bin_ip_part = (int*) malloc(8 * sizeof(int));
+    const char s[2] = ".";
+    char* token = strtok(ips, s);
+
+    int k = 0;
+    while (token != NULL)
+    {
+        bin_ip_part = decimal_to_bin(atoi(token));
+         for (int j=0; j < 8; j++ )
+         {
+             bin_list[k++] = bin_ip_part[j];
+         }
+        token = strtok(NULL, ".");
+    };
+    return bin_list;
+}
 
 
 int main (int argc, char *argv[]){
